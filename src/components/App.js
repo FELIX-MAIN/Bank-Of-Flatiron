@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AccountContainer from "./AccountContainer";
 
 function App() {
+  const [transactions, setTransaction] = useState([])
+  useEffect (()=> {
+    fetch ("http://localhost:8000/transactions")
+    .then((response) => response.json())
+    .then((transaction) => setTransaction(transaction))
+  },[])
 
   return (
     <div className="ui raised segment">
